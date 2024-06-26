@@ -5,7 +5,7 @@ const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
 async function getApiKey() {
-  const response = await fetch('/api-key');
+  const response = await fetch('/.netlify/functions/get-api-key');
   const data = await response.json();
   return data.apiKey;
 }
@@ -15,7 +15,7 @@ async function checkWeather(city) {
   const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
   const data = await response.json();
 
-  console.log(data);
+  console.log(data); 
 
   document.querySelector(".city").innerHTML = data.name;
   document.querySelector(".temp").innerHTML = data.main.temp + "°c";
@@ -44,4 +44,3 @@ async function checkWeather(city) {
 
 searchBtn.addEventListener("click", () => {
   checkWeather(searchBox.value);
-});
